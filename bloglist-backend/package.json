@@ -1,0 +1,14 @@
+{
+  "name": "bloglist-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run dev"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "Nash",
+  "license": "ISC",
+  "description": ""
+}
