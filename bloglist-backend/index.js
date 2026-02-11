@@ -1,1 +1,1 @@
-console.log('Blog list test')
+console.log('Blog list testing');
