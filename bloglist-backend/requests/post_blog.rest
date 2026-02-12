@@ -1,0 +1,9 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+  "title": "The Art of Programming",
+  "author": "John Doe",
+  "url": "https://example.com/the-art-of-programming",
+  "likes": 42
+}
