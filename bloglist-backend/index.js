@@ -5,9 +5,6 @@ const Blog = require('./models/blogs')
 
 const app = express()
 
-
-const Blog = mongoose.model('Blog', blogSchema)
-
 const mongoUrl = process.env.MONGODB_URL
 mongoose.connect(mongoUrl, {family: 4})
 
