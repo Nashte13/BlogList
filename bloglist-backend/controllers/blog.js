@@ -1,13 +1,13 @@
-const noteRouter = require('express').Router()
+const notesRouter = require('express').Router()
 const Blog = require('../models/blogs')
 
-noteRouter.get('/', (req, res) => {
+notesRouter.get('/', (req, res) => {
     Blog.find({}).then(blogs => {
         res.json(blogs)
     })
 })
 
-noteRouter.get('/:id', (req, res) => {
+notesRouter.get('/:id', (req, res) => {
     Blog.findById(req.params.id).then(blog => {
         if (blog) {
             res.json(blog)
@@ -17,7 +17,7 @@ noteRouter.get('/:id', (req, res) => {
     })
 })
 
-noteRouter.post('/', (req, res) => {
+notesRouter.post('/', (req, res) => {
     const blog = new Blog(req.body)
 
     blog.save().then((result) => {
@@ -25,4 +25,4 @@ noteRouter.post('/', (req, res) => {
     })
 })
 
-module.exports = noteRouter;
+module.exports = notesRouter;
