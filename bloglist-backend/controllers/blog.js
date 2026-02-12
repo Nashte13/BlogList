@@ -7,6 +7,16 @@ noteRouter.get('/', (req, res) => {
     })
 })
 
+noteRouter.get('/:id', (req, res) => {
+    Blog.findById(req.params.id).then(blog => {
+        if (blog) {
+            res.json(blog)
+        } else {
+            res.status(404).end()
+        }
+    })
+})
+
 noteRouter.post('/', (req, res) => {
     const blog = new Blog(req.body)
 
