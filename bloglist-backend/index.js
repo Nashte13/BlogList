@@ -3,6 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const Blog = require('./models/blogs')
 const config = require('./utils/config')
+const logger = require('./utils/logger')
 
 const app = express()
 
