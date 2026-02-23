@@ -1,16 +1,6 @@
-require('dotenv').config()
-const express = require('express')
-const mongoose = require('mongoose')
-const Blog = require('./models/blogs')
+const app = require('./app')
 const config = require('./utils/config')
 const logger = require('./utils/logger')
-
-const app = express()
-
-const mongoUrl = config.MONGODB_URL
-mongoose.connect(mongoUrl, {family: 4})
-
-app.use(express.json())
 
 
 app.listen(config.PORT, () => {
