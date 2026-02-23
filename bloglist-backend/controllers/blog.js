@@ -15,14 +15,16 @@ notesRouter.get('/:id', (req, res) => {
             res.status(404).end()
         }
     })
+    .catch(next(error))
 })
 
-notesRouter.post('/', (req, res) => {
+notesRouter.post('/', (req, res, next) => {
     const blog = new Blog(req.body)
 
     blog.save().then((result) => {
         res.status(201).json(result)
     })
+    .catch(next(error))
 })
 
 module.exports = notesRouter;
