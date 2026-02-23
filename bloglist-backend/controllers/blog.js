@@ -7,7 +7,7 @@ blogsRouter.get('/', (req, res) => {
     })
 })
 
-notesRouter.get('/:id', (req, res) => {
+blogsRouter.get('/:id', (req, res) => {
     Blog.findById(req.params.id).then(blog => {
         if (blog) {
             res.json(blog)
