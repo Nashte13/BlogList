@@ -82,6 +82,20 @@ test('a valid blog can be added', async () => {
     assert(titles.includes('Test Blog'))
 })
 
+test('blog without title, url and author is not added', async () => {
+    const newBlog = {
+        likes: 0
+    }
+
+    await api
+        .post('/api/blogs')
+        .send(newBlog)
+        .expect(400)
+
+    const response = await api.get('/api/blogs')
+    assert.strictEqual(response.body.length, initialNotes.length)
+})
+
 
 
 
