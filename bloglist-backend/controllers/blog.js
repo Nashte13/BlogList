@@ -15,13 +15,22 @@ blogsRouter.get('/:id', async (req, res) => {
         }
 })
 
-blogsRouter.post('/', (req, res, next) => {
-    const blog = new Blog(req.body)
+blogsRouter.post('/', async (req, res, next) => {
+    const body = req.body
 
-    blog.save().then((result) => {
-        res.status(201).json(result)
+    if (!body.title || !body.url) {
+        return res.status(400).json({ error: 'title and url are required' })
+    }
+
+    const blog = new Blog({
+        title: body.title,
+        url: body.url,
+        author: body.author || 'Unknown',
+        likes: body.likes || 0
     })
-    .catch(next(error))
+        const savedBlog = await blog.save()
+        res.status(201).json(savedBlog)
+    
 })
 
 module.exports = blogsRouter;
