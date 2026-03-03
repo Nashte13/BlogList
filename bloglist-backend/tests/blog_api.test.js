@@ -39,7 +39,7 @@ test('blogs are returned as json', async () => {
 test('all blogs are returned', async () => {
     const response = await api.get('/api/blogs')
 
-    assert.strictEqual(response.body.length, initialNotes.length)
+    assert.strictEqual(response.body.length, initialBlogs.length)
 })
 
 test('a specific blog is within the returned blogs', async () => {
@@ -57,6 +57,29 @@ test('unique identifier property of the blog posts is named id', async () => {
         assert.ok(blog.id)
         assert.strictEqual(blog._id, undefined)
     })
+})
+
+test('a valid blog can be added', async () => {
+    const newBlog = {
+        title: "Test Blog",
+        author: "Test Author",
+        url: "http://www.test.com",
+        likes: 0
+    }
+
+    await api
+        .post('/api/blogs')
+        .send(newBlog)
+        .expect(201)
+        .expect('Content-Type', /application\/json/)
+
+    const response = await api.get('/api/blogs')
+    const blogsAtEnd = response.body
+
+    assert.strictEqual(blogsAtEnd.length, initialBlogs.length + 1)
+
+    const titles = blogsAtEnd.map(b => b.title)
+    assert(titles.includes('Test Blog'))
 })
 
 
