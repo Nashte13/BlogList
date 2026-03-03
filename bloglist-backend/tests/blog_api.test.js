@@ -1,7 +1,9 @@
-const {test, after} = require('node:test')
+const {test, after, beforeEach} = require('node:test')
+const assert = require('node:assert')
 const mongoose = require('mongoose')
 const supertest = require('supertest')
 const app = require('../app')
+const Blog = require('../models/blog')
 
 const api = supertest(app)
 
@@ -37,7 +39,7 @@ test('blogs are returned as json', async () => {
 test('all blogs are returned', async () => {
     const response = await api.get('/api/blogs')
 
-    assert.strictEqual(response.body.length, 2)
+    assert.strictEqual(response.body.length, initialNotes.length)
 })
 
 test('a specific blog is within the returned blogs', async () => {
