@@ -19,7 +19,13 @@ const initialBlogs = [
         likes: 12
     }
 ]
-
+beforeEach(async () => {
+    await Blog.deleteMany({})
+    let noteObject = new Blog(initialBlogs[0])
+    await noteObject.save()
+    noteObject = new Blog(initialBlogs[1])
+    await noteObject.save()
+})
 
 test('blogs are returned as json', async () => {
     await api
