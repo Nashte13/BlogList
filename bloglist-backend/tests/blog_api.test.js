@@ -112,6 +112,24 @@ test('if likes property is missing, it defaults to 0', async () => {
     assert.strictEqual(response.body.likes, 0)
 })
 
+test('a blog can be deleted', async () => {
+    const reposnseAtStart = await api.get('/api/blogs')
+    const blogsAtStart = responsAtStart.body
+    const blogToDelete = blogsAtStart[0]
+
+    await api
+        .delete(`/api/blogs/${blogToDelete.id}`)
+        .expect(204)
+
+    const responseAtEnd = await api.get('/api/blogs')
+    const blogsAtEnd = responseAtEnd.body
+
+    assert.strictEqual(blogsAtEnd.length, blogsAtStart.length - 1)
+
+    const ids = blogsAtEnd.map(b => b.id)
+    assert(!ids.includes(blogToDelete.id))
+})
+
 
 after(() => {
     mongoose.connection.close()
