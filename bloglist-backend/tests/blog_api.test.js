@@ -93,7 +93,7 @@ test('blog without title, url and author is not added', async () => {
         .expect(400)
 
     const response = await api.get('/api/blogs')
-    assert.strictEqual(response.body.length, initialNotes.length)
+    assert.strictEqual(response.body.length, initialBlogs.length)
 })
 
 test('if likes property is missing, it defaults to 0', async () => {
@@ -109,7 +109,7 @@ test('if likes property is missing, it defaults to 0', async () => {
         .expect(201)
         .expect('Content-Type', /application\/json/)
 
-    assert.strictEqual(response,body,ilkes, 0)
+    assert.strictEqual(response.body.likes, 0)
 })
 
 
