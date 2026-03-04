@@ -113,9 +113,6 @@ test('if likes property is missing, it defaults to 0', async () => {
 })
 
 
-
-
-
 after(() => {
     mongoose.connection.close()
 })
