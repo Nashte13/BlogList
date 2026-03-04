@@ -96,6 +96,22 @@ test('blog without title, url and author is not added', async () => {
     assert.strictEqual(response.body.length, initialNotes.length)
 })
 
+test('if likes property is missing, it defaults to 0', async () => {
+    const newBlog = {
+        title: "Test Blog without Likes",
+        author: "Test Author",
+        url: "http://www.test.com"
+    }
+
+    const response = await api
+        .post('/api/blogs')
+        .send(newBlog)
+        .expect(201)
+        .expect('Content-Type', /application\/json/)
+
+    assert.strictEqual(response,body,ilkes, 0)
+})
+
 
 
 
