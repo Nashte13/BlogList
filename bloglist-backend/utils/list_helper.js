@@ -22,7 +22,7 @@ const favoriteBlog = (blogs) => {
 }
 
 const mostBlogs = (blogs) => {
-    if (blogs === 0) {
+    if (blogs.length === 0) {
         return null
     }
 
@@ -49,7 +49,7 @@ const mostLikes = (blogs) => {
 
     const likesCount = {}
     blogs.forEach(blog => {
-        likesCount[blog.author] = (likesCount[blog.author] || 0) + blogs.likes
+        likesCount[blog.author] = (likesCount[blog.author] || 0) + blog.likes
     })
 
     let topAuthor  = null
