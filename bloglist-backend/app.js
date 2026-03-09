@@ -5,7 +5,7 @@ const config = require('./utils/config')
 const logger = require('./utils/logger')
 const middleware = require('./utils/middleware')
 const blogsRouter = require('./controllers/blog')
-const usersRouter = require('./controllers/user')
+const usersRouter = require('./models/user')
 
 const app = express()
 
