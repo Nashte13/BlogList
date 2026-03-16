@@ -18,9 +18,9 @@ blogsRouter.get('/:id', async (req, res) => {
         }
 })
 
-const getTokenFrom = req => {
+const getTokenFrom = (req) => {
     const authorization = req.get('authorization')
-    if (authorization && authorization.startsWith('bearer ')) {
+    if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
         return authorization.replace('Bearer ', '')
     }
     return null
@@ -81,4 +81,4 @@ blogsRouter.delete('/:id', async (req, res) => {
     res.status(204).end()
 })
 
-module.exports = blogsRouter;
+module.exports = blogsRouter
