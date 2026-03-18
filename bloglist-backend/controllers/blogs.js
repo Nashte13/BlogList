@@ -18,14 +18,6 @@ blogsRouter.get('/:id', async (req, res) => {
         }
 })
 
-const getTokenFrom = (req) => {
-    const authorization = req.get('authorization')
-    if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
-        return authorization.replace('Bearer ', '')
-    }
-    return null
-}
-
 blogsRouter.post('/', async (req, res, next) => {
     const body = req.body
 
