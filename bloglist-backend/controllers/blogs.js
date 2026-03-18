@@ -29,7 +29,7 @@ const getTokenFrom = (req) => {
 blogsRouter.post('/', async (req, res, next) => {
     const body = req.body
 
-    const decodedToken = jwt.verify(getTokenFrom(req), process.env.SECRET)
+    const decodedToken = jwt.verify(req.token, process.env.SECRET)
     if (!decodedToken.id) {
         return res.status(401).json({ error: 'token missing or invalid' })
     }
@@ -55,7 +55,7 @@ blogsRouter.post('/', async (req, res, next) => {
     const savedBlog = await blog.save()
     user.blogs = user.blogs.concat(savedBlog._id)
     await user.save()
-    
+
     res.status(201).json(savedBlog)
     
 })
