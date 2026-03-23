@@ -31,4 +31,4 @@ app.use(middleware.errorHandler)
 app.use(middleware.requestLogger)
 app.use(middleware.tokenExtractor)
 
-module.exports = app
+module.exports = app 
